@@ -6,13 +6,13 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack"
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   },
-  "lint-staged":{
-    "*.js":"eslint --fix"
+  "lint-staged": {
+    "*.js": "eslint --fix"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +37,7 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "core-js": "^2.6.12"
+    "core-js": "^2.6.12",
+    "snabbdom": "^2.1.0"
   }
 }
