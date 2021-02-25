@@ -4,7 +4,7 @@ module.exports = {
     [
       "@babel/preset-react",
       {
-        pragma: "maco.createElement",
+        pragma: "MacoVDom.createElement",
         throwIfNamespace: false,
       },
     ],
