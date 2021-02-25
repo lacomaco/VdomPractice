@@ -1,5 +1,5 @@
 import { h } from "snabbdom/h";
-const MacoVdom = {
+const MacoVDom = {
   createElement: (el, props, ...children) => {
     return h(el, props, children);
   },
