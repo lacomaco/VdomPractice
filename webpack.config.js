@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const main = path.resolve(__dirname, "./src/app.js");
 const dist = path.resolve(__dirname, "./dist");
-const mainHTML = path.resolve(__dirname, "./src/index.html");
+const v_domStudy = path.resolve(__dirname, "./src/v-domStudy.html");
 
 module.exports = {
   mode: "development",
@@ -50,7 +50,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: mainHTML,
+      template: v_domStudy,
+      filename: "v-domStudy.html",
     }),
   ],
 };
