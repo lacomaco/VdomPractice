@@ -1,5 +1,2 @@
-import "./v-dom/sample";
+import "./v-dom-example/sample";
 import Snabbdom from "snabbdom-pragma";
-
-const hi = "hi";
-console.log(hi);
