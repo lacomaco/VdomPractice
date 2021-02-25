@@ -5,4 +5,4 @@ const MacoVDom = {
   },
 };
 
-export default MacoVdom;
+export default MacoVDom;
