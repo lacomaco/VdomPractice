@@ -79,18 +79,15 @@ export const MacoCore = (function () {
     },
     useState: (initialValue) => {
       const currentCursor = cursor;
-
-      if (firstRender) {
-        hooks[currentCursor] = [
-          initialValue,
-          (value) => {
-            if (hooks[currentCursor] !== value) {
-              hooks[currentCursor][0] = value;
-              __update();
-            }
-          },
-        ];
-      }
+      hooks[currentCursor] = hooks[currentCursor] || [
+        initialValue,
+        (value) => {
+          if (hooks[currentCursor] !== value) {
+            hooks[currentCursor][0] = value;
+            __update();
+          }
+        },
+      ];
       cursor++;
       return [...hooks[currentCursor]];
     },
