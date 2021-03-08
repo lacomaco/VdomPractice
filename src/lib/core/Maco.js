@@ -20,6 +20,7 @@ const Maco = {
     const event = {};
     let style = {};
     let dataset = {};
+    let key = undefined;
     Object.keys(props).forEach((key) => {
       if (key.startsWith("on")) {
         const name = key.substring(2).toLowerCase();
@@ -28,6 +29,8 @@ const Maco = {
         style = props[key];
       } else if (key === "dataSet") {
         dataset = props[key];
+      } else if (key === "key") {
+        key = props[key];
       } else {
         prop[key] = props[key];
       }
@@ -42,6 +45,7 @@ const Maco = {
       props: {
         ...prop,
       },
+      key,
     };
 
     if (isFunction(el)) {
