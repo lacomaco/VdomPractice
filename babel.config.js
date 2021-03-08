@@ -1,12 +1,24 @@
 module.exports = {
   presets: [
-    ["@babel/preset-env", { useBuiltIns: "usage", corejs: { version: 2 } }],
     [
-      "@babel/preset-react",
+      "@babel/preset-env",
       {
-        pragma: "MacoVDom.createElement",
+        targets: {
+          chrome: "79",
+          ie: "11",
+        },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        pragma: "Maco.createElement", // 기본값은 React.createElement
         throwIfNamespace: false,
       },
     ],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-arrow-functions",
   ],
 };
