@@ -15,6 +15,7 @@ const patch = init([
 
 const Maco = {
   createElement: (el, props, ...children) => {
+    console.log(children);
     props = props || {};
     const prop = {};
     const event = {};
