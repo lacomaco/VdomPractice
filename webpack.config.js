@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.m?js$/,
-        exclude: /core-js/,
+        exclude: /node_modules\/?!snabbdom|core-js/,
         use: {
           loader: "babel-loader",
         },
