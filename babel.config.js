@@ -3,6 +3,10 @@ module.exports = {
     [
       "@babel/preset-env",
       {
+        useBuiltIns: "usage",
+        corejs: {
+          version: 2,
+        },
         targets: {
           chrome: "79",
           ie: "11",
@@ -20,5 +24,6 @@ module.exports = {
     ],
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-transform-shorthand-properties",
   ],
 };

@@ -7,7 +7,6 @@ const v_domStudy = path.resolve(
   __dirname,
   "./src/v-dom-example/v-domStudy.html"
 );
-
 module.exports = {
   mode: "development",
   entry: {
@@ -17,6 +16,7 @@ module.exports = {
     filename: "[name].js",
     path: dist,
   },
+  target: ["web", "es5"],
   module: {
     rules: [
       {
@@ -44,9 +44,11 @@ module.exports = {
         ],
       },
       {
-        test: /.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
+        test: /\.m?js$/,
+        exclude: /core-js/,
+        use: {
+          loader: "babel-loader",
+        },
       },
     ],
   },
