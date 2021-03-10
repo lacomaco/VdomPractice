@@ -19,7 +19,6 @@ const Maco = (function () {
 
   return {
     createElement: (el, props, ...children) => {
-      console.log(children);
       props = props || {};
       const prop = {};
       const event = {};
@@ -65,7 +64,6 @@ const Maco = (function () {
     },
 
     render: (container, vDom) => {
-      domEntry = vDom;
       rootDom = patch(container, vDom.__render());
       return rootDom;
     },
