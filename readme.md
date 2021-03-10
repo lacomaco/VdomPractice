@@ -67,9 +67,7 @@ LifeCycle 정보들은 아래 링크를 확인해주세요.
 https://github.com/snabbdom/snabbdom#hooks
 
 ### 현재 지원하는 기능
-
+JSX 렌더링
 useState
 useEffect
-
-
 IE 11 지원
