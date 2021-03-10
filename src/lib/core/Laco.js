@@ -43,7 +43,23 @@ export default function Laco(fn) {
       cursor++;
       return [...hooks[currentCursor]];
     },
-    useEffect: () => {},
+    useEffect: (callback, diffArray=[]) => {
+      const currentCursor = cursor;
+      if (!__vNode) {
+        callback();
+        hooks[currentCursor] = diffArray;
+      } else {
+        const isChanged = !hooks[currentCursor].every(
+          (elm, i) => elm === diffArray[i]
+        );
+
+        if (isChanged) {
+          callback();
+          hooks[currentCursor] = diffArray;
+        }
+      }
+      cursor++;
+    },
   };
 
   return {
