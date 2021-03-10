@@ -41,6 +41,9 @@ const Maco = (function () {
       });
 
       props = {
+        hook: {
+          ...props["hook"],
+        },
         on: {
           ...event,
         },
@@ -52,8 +55,9 @@ const Maco = (function () {
         key,
       };
 
-      if (isObject(el)) {
-        return el.__render(props, el.effects);
+      if (isFunction(el)) {
+        const createdElement = el();
+        return createdElement.__render(props, createdElement.effects);
       }
 
       return h(
@@ -64,7 +68,8 @@ const Maco = (function () {
     },
 
     render: (container, vDom) => {
-      rootDom = patch(container, vDom.__render());
+      const createdElement = vDom();
+      rootDom = patch(container, createdElement.__render());
       return rootDom;
     },
   };
