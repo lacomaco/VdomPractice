@@ -3,9 +3,9 @@
 생성한 V-DOM에 State,Hooks 데이터를 내장하는 방법으로 해결해야할것 같다.
 V-DOM에는 data property가 있음으로 그곳에 
 
-data.hooks (state,useEffect 함수 저장)
-data.afterHooks (cleanUp 함수 저장)
-data.cursor (hooks index를 가리키는 함수)
+data.data.hooks (state,useEffect 함수 저장)
+data.data.afterHooks (cleanUp 함수 저장)
+data.data.cursor (hooks index를 가리키는 함수)
 
 3개의 프로퍼티를 심어놓고 관리한다.
 -- 로직
