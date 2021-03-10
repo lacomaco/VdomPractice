@@ -28,7 +28,6 @@ export default function LacoFactory(fn) {
       //unmount 라이프 사이클 구조 추가
       addLifeCycle(__props);
       __props.hook.remove = () => {
-        console.log("remove Called");
         afterHooks.forEach((fn) => fn());
       };
       __vNode = componentFunction(__props, effects);
@@ -85,10 +84,20 @@ export default function LacoFactory(fn) {
           }
         }
 
-        if (!cleanUp) {
+        if (cleanUp) {
           afterHooks.push(cleanUp);
         }
         cursor++;
+      },
+      useUnMount: () => {
+        return {
+          remove: (vNode, cn) => {
+            afterHooks.forEach((after) => {
+              after();
+            });
+            cn();
+          },
+        };
       },
     };
     return {
