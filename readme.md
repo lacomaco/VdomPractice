@@ -18,9 +18,9 @@ const TestComponent = LacoFactory((props,effects)=>{
 ```
 
 LacoFactory 함수는 인자로 실행할 컴포넌트 함수를 받습니다.
-LacoFactory 함수 실행시 State,Hooks와 같이 컴포넌트가 저장하고 관리할 정보를 클로저에 담아 사용할 수 있는 기능을 제공합니다.
+컴포넌트 함수는 인자로 props와 effects를 받습니다.
 
-LacoFactory 함수의 인자로 들어가는 함수는 props,와 effects를 받습니다.
+LacoFactory 함수 실행시 State,Hooks와 같이 컴포넌트가 저장하고 관리할 정보를 클로저에 담아 컴포넌트가 추후 사용할 수 있도록 해줍니다.
 
 #### props
 
@@ -36,13 +36,14 @@ props는 다음과 같은 프로퍼티를 가진 객체입니다.
   style:{}
 }
 ```
-hook은 가상돔의 라이프사이클과 관련된 함수들이 위치한 객체입니다.
+hook은 가상돔의 라이프사이클에 바인딩할 함수들을 관리하는 객체입니다.
 snabbdom을 사용하기 때문에 snabbdom의 구조와 동일하다고 보시면 됩니다.
-
 https://github.com/snabbdom/snabbdom#hooks
 
-on의 경우 onClick,onChange와 같은 이벤트 함수를 등록했을 경우 담겨있는 props이고 일반 props 데이터는 props 객체에 저장되어 내려옵니다.
+on은 JSX태그에 선언된 onClick, onChange와 같은 이벤트를 snabbdom에서 사용할 수 있도록 변환하여 저장하는 객체입니다.
+style과 관련된 데이터는 style에 저장되고
 
+그외의 일반 데이터는 props에 저장됩니다.
 #### effects
 
 effects 객체에는 useState,useEffect와 같이 컴포넌트 상태를 관리하는 함수들이 담겨져 내려옵니다.
