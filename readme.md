@@ -10,7 +10,7 @@ tiny-react는 Vue.JS의 가상돔 라이브러리인 Snabbdom을 바탕으로 �
 
 ### LacoFactory
 
-```javascript=
+```js
 const TestComponent = LacoFactory((props,effects)=>{
   const [data,setData] = effects.useState(0);
   return <div> {data} </div>
@@ -51,7 +51,7 @@ effects 객체에는 useState,useEffect와 같이 컴포넌트 상태를 관리�
 
 snabbdom 가상 돔에 접근하기 위해서는 다음과 같이 JSX 태그에 hook 정보들을 넣어주면 접근할 수 있습니다.
 
-```javascript=
+```js
 const TestComponent = LacoFactory((props,effects)=>{
   const [data,setData] = effects.useState(0);
   return <div hook={{
