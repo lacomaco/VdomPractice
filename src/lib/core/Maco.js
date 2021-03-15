@@ -57,7 +57,7 @@ const Maco = (function () {
 
       if (isFunction(el)) {
         const createdElement = el();
-        return createdElement.__render(props, createdElement.effects);
+        return createdElement.__render(props);
       }
 
       return h(

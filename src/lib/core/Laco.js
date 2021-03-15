@@ -23,7 +23,7 @@ export default function LacoFactory(fn) {
       __vNode = v_node;
     };
 
-    const __render = (props, effects) => {
+    const __render = (props) => {
       __props = props || {};
       //unmount 라이프 사이클 구조 추가
       addLifeCycle(__props);
