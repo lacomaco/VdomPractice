@@ -14,7 +14,6 @@ export const patch = init([
 ]);
 
 const Maco = (function () {
-  let domEntry = null;
   let rootDom = null;
 
   return {
@@ -66,7 +65,55 @@ const Maco = (function () {
         children.flatMap((x) => x)
       );
     },
+    jsxToJson: (el, props, ...children) => {
+      props = props || {};
+      const prop = {};
+      const event = {};
+      let style = {};
+      let dataset = {};
+      let key = undefined;
+      Object.keys(props).forEach((key) => {
+        if (key.startsWith("on")) {
+          const name = key.substring(2).toLowerCase();
+          event[name] = props[key];
+        } else if (key === "style") {
+          style = props[key];
+        } else if (key === "dataSet") {
+          dataset = props[key];
+        } else if (key === "key") {
+          key = props[key];
+        } else {
+          prop[key] = props[key];
+        }
+      });
+      props = {
+        hook: {
+          ...props["hook"],
+        },
+        on: {
+          ...event,
+        },
+        style,
+        dataset,
+        props: {
+          ...prop,
+        },
+        key,
+      };
 
+      if (children.length !== 0) {
+        return {
+          el,
+          props,
+          children: children.map((child) => jsxToJson(child)),
+        };
+      } else {
+        return {
+          el,
+          props,
+        };
+      }
+    },
     render: (container, vDom) => {
       const createdElement = vDom();
       rootDom = patch(container, createdElement.__render());
