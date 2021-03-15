@@ -4,3 +4,10 @@
 LacoModel -> props,state,Hooks, 라이프사이클에 들어가는 함수 데이터들을 관리
 LacoController -> use* 함수들 제공, LacoView-LacoModel을 바인딩하여 관리
 LacoView -> 실행할 JSX 함수와, 가상돔을 저장하고 관리,업데이트의 역할도 담당
+
+2. 라이프사이클 가로채기
+
+Babel로 바로 헬퍼 함수를 부르는게 아닌
+
+JSX를 JSON으로 변경후 변경된 JSON 값에 임의로 라이프사이클 훅을 바인딩 하는 방식으로 해결할 예정
+

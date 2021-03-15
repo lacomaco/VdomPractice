@@ -101,18 +101,11 @@ const Maco = (function () {
         key,
       };
 
-      if (children.length !== 0) {
-        return {
-          el,
-          props,
-          children: children.map((child) => jsxToJson(child)),
-        };
-      } else {
-        return {
-          el,
-          props,
-        };
-      }
+      return {
+        el,
+        props,
+        children: children.flatMap((x) => x),
+      };
     },
     render: (container, vDom) => {
       const createdElement = vDom();

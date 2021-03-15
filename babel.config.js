@@ -18,7 +18,7 @@ module.exports = {
     [
       "@babel/plugin-transform-react-jsx",
       {
-        pragma: "MacoCore.createElement", // 기본값은 React.createElement
+        pragma: "MacoCore.jsxToJson", // 기본값은 React.createElement
         throwIfNamespace: false,
       },
     ],

@@ -1,4 +1,6 @@
 import { patch } from "./Maco";
+import MacoCore from "./Maco";
+const { jsxToJson } = MacoCore;
 export default class LacoView {
   constructor(componentFN) {
     this.componentFN = componentFN;
