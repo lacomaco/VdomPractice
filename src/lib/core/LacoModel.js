@@ -24,7 +24,12 @@ export default class LacoModel {
     this.cursor = 0;
   }
 
-  setUnMountHook(cn) {}
-
-  getHooks() {}
+  getHooks() {
+    return {
+      remove: (vNode, cb) => {
+        this.afterHooks.forEach((hook) => hook());
+        cb();
+      },
+    };
+  }
 }

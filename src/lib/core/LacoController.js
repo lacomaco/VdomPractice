@@ -13,13 +13,20 @@ export default class LacoController {
         useState: this.useState,
         useEffect: this.useEffect,
       },
-      this.model.hook
+      this.model.getHooks()
     );
     return this.view.__vNode;
   }
-  __update(props) {
+  __update() {
     this.model.cursor = 0;
     this.model.afterHookCursor = 0;
+    this.view.update(
+      {
+        useState: this.useState,
+        useEffect: this.useEffect,
+      },
+      this.model.getHooks()
+    );
   }
   useState(initVal) {
     const cursor = this.model.cursor;
