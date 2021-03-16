@@ -10,13 +10,13 @@ export default class LacoController {
   __render(props) {
     this.model.setProps(props);
     this.view.render(props, this.effects, this.model.getHooks());
+    this.model.resetCursor();
     return this.view.__vNode;
   }
 
   __update() {
-    this.model.cursor = 0;
-    this.model.afterHookCursor = 0;
     this.view.update(this.model.props, this.effects, this.model.getHooks());
+    this.model.resetCursor();
   }
 
   effects() {
