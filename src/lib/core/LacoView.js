@@ -35,7 +35,7 @@ export default class LacoView {
   createElement({ el, props, children }) {
     if (isComponent(el)) {
       if (children.length !== 0) {
-        props.child = children;
+        props.children = children;
       }
       return el.__render(props);
     }
