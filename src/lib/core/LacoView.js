@@ -9,7 +9,6 @@ export default class LacoView {
 
   render(props, effects, lifeCycle) {
     const vDomInfo = this.componentFN(props, effects);
-    console.log(vDomInfo);
     this.bindLifeCycle(vDomInfo, lifeCycle);
     return (this.__vNode = this.createElement(vDomInfo));
   }

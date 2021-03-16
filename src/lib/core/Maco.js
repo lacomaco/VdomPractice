@@ -17,54 +17,6 @@ const Maco = (function () {
   let rootDom = null;
 
   return {
-    createElement: (el, props, ...children) => {
-      props = props || {};
-      const prop = {};
-      const event = {};
-      let style = {};
-      let dataset = {};
-      let key = undefined;
-      Object.keys(props).forEach((key) => {
-        if (key.startsWith("on")) {
-          const name = key.substring(2).toLowerCase();
-          event[name] = props[key];
-        } else if (key === "style") {
-          style = props[key];
-        } else if (key === "dataSet") {
-          dataset = props[key];
-        } else if (key === "key") {
-          key = props[key];
-        } else {
-          prop[key] = props[key];
-        }
-      });
-
-      props = {
-        hook: {
-          ...props["hook"],
-        },
-        on: {
-          ...event,
-        },
-        style,
-        dataset,
-        props: {
-          ...prop,
-        },
-        key,
-      };
-
-      if (isFunction(el)) {
-        const createdElement = el();
-        return createdElement.__render(props);
-      }
-
-      return h(
-        el,
-        props,
-        children.flatMap((x) => x)
-      );
-    },
     jsxToJson: (el, props, ...children) => {
       props = props || {};
       const prop = {};
@@ -108,8 +60,8 @@ const Maco = (function () {
       };
     },
     render: (container, vDom) => {
-      const createdElement = vDom();
-      rootDom = patch(container, createdElement.__render());
+      const createdElement = vDom.__render();
+      rootDom = patch(container, createdElement);
       return rootDom;
     },
   };
