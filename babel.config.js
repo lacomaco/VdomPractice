@@ -22,7 +22,7 @@ module.exports = {
         throwIfNamespace: false,
       },
     ],
-    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-classes",
     "@babel/plugin-transform-arrow-functions",
     "@babel/plugin-transform-shorthand-properties",
   ],

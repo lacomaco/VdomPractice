@@ -5,7 +5,6 @@ export default class LacoModel {
     this.afterHookCursor = 0;
     this.hooks = [];
     this.afterHooks = [];
-    this.hook = {};
   }
 
   setProps(props) {

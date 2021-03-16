@@ -1,6 +1,6 @@
 import { patch } from "./Maco";
 import { h } from "snabbdom/h";
-import { isString, isComponent } from "../../util/is";
+import { isString, isComponent, isNumber } from "../../util/is";
 export default class LacoView {
   constructor(componentFN) {
     this.componentFN = componentFN;
@@ -31,7 +31,13 @@ export default class LacoView {
     return this.__vNode;
   }
 
-  createElement({ el, props, children }) {
+  createElement(component) {
+    if (isString(component) || isNumber(component)) {
+      return component;
+    }
+
+    const { el, props, children } = component;
+
     if (isComponent(el)) {
       if (children.length !== 0) {
         props.children = children;
