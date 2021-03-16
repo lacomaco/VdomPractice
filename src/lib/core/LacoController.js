@@ -3,73 +3,70 @@ export default class LacoController {
     this.view = view;
     this.model = model;
     this._isVNode = true;
+    this.effects();
   }
+
   // rendering된 snabbdom의 virtual-node가 리턴되어야함.
   __render(props) {
     this.model.setProps(props);
-    this.view.render(
-      props,
-      {
-        useState: this.useState,
-        useEffect: this.useEffect,
-      },
-      this.model.getHooks()
-    );
+    this.view.render(props, this.effects, this.model.getHooks());
     return this.view.__vNode;
   }
+
   __update() {
     this.model.cursor = 0;
     this.model.afterHookCursor = 0;
-    this.view.update(
-      {
-        useState: this.useState,
-        useEffect: this.useEffect,
-      },
-      this.model.getHooks()
-    );
+    this.view.update(this.model.props, this.effects, this.model.getHooks());
   }
-  useState(initVal) {
-    const cursor = this.model.cursor;
-    const hooks = this.model.hooks;
 
-    hooks[cursor] = hooks[cursor] || [
-      initVal,
-      (val) => {
-        if (hooks[cursor] !== val) {
-          hooks[val][0] = val;
-          this.__update(this.model.props);
+  effects() {
+    this.effects = {
+      useState: (initVal) => {
+        const cursor = this.model.cursor;
+        const hooks = this.model.hooks;
+
+        hooks[cursor] = hooks[cursor] || [
+          initVal,
+          (val) => {
+            if (hooks[cursor] !== val) {
+              hooks[cursor][0] = val;
+              this.__update(this.model.props);
+            }
+          },
+        ];
+
+        this.model.cursor++;
+        return [...hooks[cursor]];
+      },
+      useEffect: (callback, diffArray = []) => {
+        const cursor = this.model.cursor;
+        const hooks = this.model.hooks;
+        const afterCursor = this.model.afterCursor;
+        const afterHooks = this.model.afterHooks;
+
+        let cleanUp = undefined;
+
+        if (!hooks[cursor]) {
+          cleanUp = callback();
+          hooks[cursor] = diffArray;
+        } else {
+          const isChanged = !hooks[cursor].every(
+            (elm, i) => elm === diffArray[i]
+          );
+
+          if (isChanged) {
+            cleanUp = callback();
+            hooks[cursor] = diffArray;
+          }
         }
+
+        if (cleanUp) {
+          this.model.afterCursor++;
+          afterHooks[afterCursor] = cleanUp;
+        }
+
+        this.model.cursor++;
       },
-    ];
-
-    this.model.cursor++;
-    return [...hooks[cursor]];
-  }
-  useEffect(callback, diffArray = []) {
-    const cursor = this.model.cursor;
-    const hooks = this.model.hooks;
-    const afterCursor = this.model.afterCursor;
-    const afterHooks = this.model.afterHooks;
-
-    let cleanUp = undefined;
-
-    if (!hooks[cursor]) {
-      cleanUp = callback();
-      hooks[cursor] = callback;
-    } else {
-      const isChanged = !hooks[cursor].every((elm, i) => elm === diffArray[i]);
-
-      if (isChanged) {
-        cleanUp = callback();
-        hooks[cursor] = diffArray;
-      }
-    }
-
-    if (cleanUp) {
-      this.model.afterCursor++;
-      afterHooks[afterCursor] = cleanUp;
-    }
-
-    this.model.cursor++;
+    };
   }
 }
