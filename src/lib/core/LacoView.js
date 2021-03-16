@@ -1,6 +1,6 @@
 import { patch } from "./Maco";
 import { h } from "snabbdom/h";
-import { isString, isComponent, isNumber } from "../../util/is";
+import { isString, isComponent, isNumber, isFunction } from "../../util/is";
 export default class LacoView {
   constructor(componentFN) {
     this.componentFN = componentFN;
@@ -14,9 +14,7 @@ export default class LacoView {
   }
 
   bindLifeCycle(vDomInfo, lifeCycle) {
-    vDomInfo.props.hook = {
-      remove: lifeCycle.remove,
-    };
+    vDomInfo.props.hook = lifeCycle;
   }
 
   update(props, effects, lifeCycle) {
@@ -38,11 +36,12 @@ export default class LacoView {
 
     const { el, props, children } = component;
 
-    if (isComponent(el)) {
+    if (isFunction(el)) {
       if (children.length !== 0) {
         props.children = children;
       }
-      return el.__render(props);
+      const childComponent = el();
+      return childComponent.__render(props);
     }
 
     return h(
