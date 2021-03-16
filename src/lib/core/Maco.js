@@ -3,8 +3,6 @@ import { classModule } from "snabbdom/modules/class";
 import { propsModule } from "snabbdom/modules/props";
 import { styleModule } from "snabbdom/modules/style";
 import { eventListenersModule } from "snabbdom/modules/eventlisteners";
-import { h } from "snabbdom/h";
-import { isFunction, isObject } from "../../util/is";
 
 export const patch = init([
   classModule,
@@ -60,8 +58,8 @@ const Maco = (function () {
       };
     },
     render: (container, vDom) => {
-      const createdElement = vDom.__render();
-      rootDom = patch(container, createdElement);
+      const createdElement = vDom();
+      rootDom = patch(container, createdElement.__render());
       return rootDom;
     },
   };
