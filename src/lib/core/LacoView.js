@@ -1,22 +1,31 @@
 import { patch } from "./Maco";
 import { h } from "snabbdom/h";
-import MacoCore from "./Maco";
-import { isString } from "../../util/is";
-const { jsxToJson } = MacoCore;
+import { isString, isComponent } from "../../util/is";
 export default class LacoView {
   constructor(componentFN) {
     this.componentFN = componentFN;
     this.__vNode = null;
   }
 
-  render(props, effects) {
-    this.vDomInfo = this.componentFN(props, effects);
-    return this.__vNode;
+  render(props, effects, lifeCycle) {
+    const vDomInfo = this.componentFN(props, effects);
+    console.log(vDomInfo);
+    this.bindLifeCycle(vDomInfo, lifeCycle);
+    return (this.__vNode = this.createElement(vDomInfo));
   }
 
-  bindLifeCycle() {}
+  bindLifeCycle(vDomInfo, lifeCycle) {
+    vDomInfo.props.hook = {
+      remove: lifeCycle.remove,
+    };
+  }
 
-  update() {}
+  update(props, effects, lifeCycle) {
+    const vDomInfo = this.componentFN(props, effects);
+    this.bindLifeCycle(vDomInfo, lifeCycle);
+    const vDom = this.createElement(vDomInfo);
+    this.reconcile(this.__vNode, vDom);
+  }
 
   reconcile(prev, next) {
     this.__vNode = patch(prev, next);
@@ -24,6 +33,13 @@ export default class LacoView {
   }
 
   createElement({ el, props, children }) {
+    if (isComponent(el)) {
+      if (children.length !== 0) {
+        props.child = children;
+      }
+      return el.__render(props);
+    }
+
     return h(
       el,
       props,
@@ -31,7 +47,7 @@ export default class LacoView {
         if (isString(child)) {
           return child;
         }
-        this.createElement(child);
+        return this.createElement(child);
       })
     );
   }
