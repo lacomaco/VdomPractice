@@ -75,7 +75,9 @@ React의 useEffect와 동일합니다. 컴포넌트가 마운트될때,2번째 �
 
 아직 unMount시 effect가 실행되는 기능은 미 구현상태입니다.
 ### 현재 지원하는 기능
+
 JSX 렌더링
-useState
-useEffect
+
+useState,useEffect지원
+
 IE 11 지원
