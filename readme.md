@@ -48,25 +48,32 @@ style과 관련된 데이터는 style에 저장되고
 
 effects 객체에는 useState,useEffect와 같이 컴포넌트 상태를 관리하는 함수들이 담겨져 내려옵니다.
 
-### LifeCycle 접근
-
-snabbdom 가상 돔에 접근하기 위해서는 다음과 같이 JSX 태그에 hook 정보들을 넣어주면 접근할 수 있습니다.
+#### effects.useState
 
 ```js
 const TestComponent = LacoFactory((props,effects)=>{
   const [data,setData] = effects.useState(0);
-  return <div hook={{
-  remove : (vNode,cn)=>{
-    ...
-    cn(),
-  }
-  }}> {data} </div>
+  return <div> {data} </div>
 });
 ```
 
-LifeCycle 정보들은 아래 링크를 확인해주세요.
-https://github.com/snabbdom/snabbdom#hooks
+React의 state와 동일합니다. state가 변경되면 이를 비교하여 컴포넌트를 리렌더링 합니다.
 
+#### effects.useEffect
+
+```js
+const TestComponent = LacoFactory((props,effects)=>{
+  const [data,setData] = effects.useState(0);
+  effects.useEffect(()=>{
+    console.log(data);
+  },[]);
+  return <div> {data} </div>
+});
+```
+
+React의 useEffect와 동일합니다. 컴포넌트가 마운트될때,2번째 인자에들어간 state값이 변경되면 effect역시 다시 실행됩니다.
+
+아직 unMount시 effect가 실행되는 기능은 미 구현상태입니다.
 ### 현재 지원하는 기능
 JSX 렌더링
 useState
