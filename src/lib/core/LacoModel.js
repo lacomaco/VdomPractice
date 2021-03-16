@@ -7,6 +7,11 @@ export default class LacoModel {
     this.afterHooks = [];
   }
 
+  resetCursor() {
+    this.cursor = 0;
+    this.afterHookCursor = 0;
+  }
+
   setProps(props) {
     this.props = props;
   }
@@ -17,10 +22,6 @@ export default class LacoModel {
 
   increaseCursor() {
     this.cursor++;
-  }
-
-  resetCursor() {
-    this.cursor = 0;
   }
 
   getHooks() {
