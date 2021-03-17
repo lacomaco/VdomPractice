@@ -4,10 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const main = path.resolve(__dirname, "./src/app.js");
 const dist = path.resolve(__dirname, "./dist");
 const src = path.resolve(__dirname, "./src");
-const v_domStudy = path.resolve(
-  __dirname,
-  "./src/v-dom-example/v-domStudy.html"
-);
+const v_domStudy = path.resolve(__dirname, "example/v-domStudy.html");
 module.exports = {
   mode: "development",
   entry: {
