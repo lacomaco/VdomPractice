@@ -1,12 +1,6 @@
 import { patch } from "./Maco";
 import { h } from "snabbdom/h";
-import {
-  isString,
-  isComponent,
-  isNumber,
-  isFunction,
-  isObject,
-} from "../../util/is";
+import { isString, isComponent, isNumber } from "../../util/is";
 export default class LacoView {
   constructor(componentFN) {
     this.componentFN = componentFN;
