@@ -1,8 +1,9 @@
 export default class LacoController {
-  constructor(view, model) {
+  constructor(view, model, marker) {
     this.view = view;
     this.model = model;
     this._isVNode = true;
+    this.marker = marker;
     this.effects();
   }
 
@@ -30,7 +31,7 @@ export default class LacoController {
           (val) => {
             if (hooks[cursor] !== val) {
               hooks[cursor][0] = val;
-              this.__update(this.model.props);
+              this.__update();
             }
           },
         ];
@@ -41,7 +42,7 @@ export default class LacoController {
       useEffect: (callback, diffArray = []) => {
         const cursor = this.model.cursor;
         const hooks = this.model.hooks;
-        const afterCursor = this.model.afterCursor;
+        const afterCursor = this.model.afterHookCursor;
         const afterHooks = this.model.afterHooks;
 
         let cleanUp = undefined;
@@ -61,7 +62,7 @@ export default class LacoController {
         }
 
         if (cleanUp) {
-          this.model.afterCursor++;
+          this.model.afterHookCursor++;
           afterHooks[afterCursor] = cleanUp;
         }
 
