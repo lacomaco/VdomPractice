@@ -3,6 +3,7 @@ import { classModule } from "snabbdom/modules/class";
 import { propsModule } from "snabbdom/modules/props";
 import { styleModule } from "snabbdom/modules/style";
 import { eventListenersModule } from "snabbdom/modules/eventlisteners";
+import { isFunction } from "../../util/is";
 
 export const patch = init([
   classModule,
@@ -50,6 +51,15 @@ const Maco = (function () {
         },
         key,
       };
+
+      if (isFunction(el)) {
+        const newComponent = el();
+        return {
+          el: newComponent,
+          props,
+          children: children.flatMap((x) => x),
+        };
+      }
 
       return {
         el,
