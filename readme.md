@@ -22,6 +22,8 @@ LacoFactory 함수는 인자로 실행할 컴포넌트 함수를 받습니다.
 
 LacoFactory 함수 실행시 State,Hooks와 같이 컴포넌트가 저장하고 관리할 정보를 클로저에 담아 컴포넌트가 추후 사용할 수 있도록 해줍니다.
 
+JSX를 파싱하기 위해서 LacoFactory 함수의 상단에는 MacoCore 모듈을 선언해줘야합니다.
+
 #### props
 
 props는 다음과 같은 프로퍼티를 가진 객체입니다.
