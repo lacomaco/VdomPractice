@@ -1,7 +1,7 @@
-import LacoFactory from "../lib/core/LacoFactory";
+import MacoCore from "../src/lib/core/Maco";
+import LacoFactory from "../src/lib/core/LacoFactory";
 import Header from './header';
 import Item from './item';
-import MacoCore from "../lib/core/Maco";
 
 const example = [
   {

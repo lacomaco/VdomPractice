@@ -1,5 +1,6 @@
-import MacoCore, { patch } from "../lib/core/Maco";
+import MacoCore, { patch } from "../src/lib/core/Maco";
 import Main from "./main";
+import "./style.css";
 
 const { render } = MacoCore;
 

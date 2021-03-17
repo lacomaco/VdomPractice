@@ -2,14 +2,15 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const main = path.resolve(__dirname, "./src/app.js");
+const example = path.resolve(__dirname, "./example/app.js");
 const dist = path.resolve(__dirname, "./dist");
 const src = path.resolve(__dirname, "./src");
+const exampleFolder = path.resolve(__dirname, "./example");
 const v_domStudy = path.resolve(__dirname, "example/v-domStudy.html");
+
 module.exports = {
   mode: "development",
-  entry: {
-    main,
-  },
+  entry: [main, example],
   output: {
     filename: "[name].js",
     path: dist,
@@ -44,7 +45,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: [/node_modules/],
-        include: [/node_modules\/snabbdom/, src],
+        include: [/node_modules\/snabbdom/, src, exampleFolder],
         use: {
           loader: "babel-loader",
         },

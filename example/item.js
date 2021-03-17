@@ -1,5 +1,5 @@
-import MacoCore from "../lib/core/Maco";
-import LacoFactory from "../lib/core/LacoFactory";
+import MacoCore from "../src/lib/core/Maco";
+import LacoFactory from "../src/lib/core/LacoFactory";
 
 const Item = LacoFactory(({props}, effects) => {
   const {deleteTodo} = props;
