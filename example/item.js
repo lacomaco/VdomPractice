@@ -2,9 +2,20 @@ import MacoCore from "../src/lib/core/Maco";
 import LacoFactory from "../src/lib/core/LacoFactory";
 
 const Item = LacoFactory(({props}, effects) => {
+  const [clickCount,setClickCount] = effects.useState(0);
   const {deleteTodo} = props;
   const onClick = ()=>{
-    deleteTodo(props.index);
+    if(clickCount===1){
+      deleteTodo(props.index);
+    }else{
+      setClickCount(clickCount+1);
+    }
+  }
+
+  if(clickCount === 1){
+    return <li style={{
+      textDecoration:"line-through"
+    }} onClick={onClick}>{props.todo.title},{clickCount}</li>
   }
   return <li onClick={onClick}>{props.todo.title}</li>
 });

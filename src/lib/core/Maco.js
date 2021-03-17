@@ -32,7 +32,8 @@ const Maco = (function () {
         } else if (key === "dataSet") {
           dataset = props[key];
         } else if (key === "key") {
-          key = props[key];
+          //key = props[key];
+          prop.key = props[key];
         } else {
           prop[key] = props[key];
         }

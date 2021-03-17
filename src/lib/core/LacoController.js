@@ -20,6 +20,10 @@ export default class LacoController {
     this.model.resetCursor();
   }
 
+  getKey() {
+    return this.model.getKey();
+  }
+
   effects() {
     this.effects = {
       useState: (initVal) => {

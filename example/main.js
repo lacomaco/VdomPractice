@@ -32,7 +32,7 @@ const Main = LacoFactory((props, effects) => {
   return <div>
     <Header addTodo={addTodoList}/>
     <ul>
-    {todoList.map((e,id)=><Item todo={e} key={id} index={id} deleteTodo={deleteTodoList}/>)}
+    {todoList.map((e,id)=><Item todo={e} key={e.title} index={id} deleteTodo={deleteTodoList}/>)}
     </ul>
   </div>
 });
