@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const main = path.resolve(__dirname, "./src/app.js");
 const dist = path.resolve(__dirname, "./dist");
+const src = path.resolve(__dirname, "./src");
 const v_domStudy = path.resolve(
   __dirname,
   "./src/v-dom-example/v-domStudy.html"
@@ -21,7 +22,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ["css-loader", "style-loader"],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /.png$|.jpg$|.jpeg$|.gif$/,
@@ -45,7 +46,8 @@ module.exports = {
       },
       {
         test: /\.m?js$/,
-        exclude: /node_modules\/?!snabbdom|core-js/,
+        exclude: [/node_modules/],
+        include: [/node_modules\/snabbdom/, src],
         use: {
           loader: "babel-loader",
         },
