@@ -17,14 +17,6 @@ export default class LacoController {
     return this.view.__vNode;
   }
 
-  /*
-  __update() {
-    this.view.update(this.model.props, this.effects, this.model.getHooks());
-    this.model.resetCursor();
-    update();
-  }
-  */
-
   __update() {
     this.view.update(this.model.props, this.effects, this.model.getHooks());
     this.model.resetCursor();
