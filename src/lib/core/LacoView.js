@@ -1,6 +1,6 @@
 import { patch } from "./Maco";
 import { h } from "snabbdom/h";
-import { isString, isComponent, isNumber, isSameKey } from "../../util/is";
+import { isString, isComponent, isNumber, isSameKey } from "../util/is";
 export default class LacoView {
   constructor(componentFN) {
     this.componentFN = componentFN;
@@ -21,10 +21,12 @@ export default class LacoView {
 
   update(props, effects, lifeCycle) {
     const nextData = this.componentFN(props, effects);
+    this.createElement(nextData);
     this.__prevData = this.diff(this.__prevData, nextData);
     this.bindLifeCycle(this.__prevData, lifeCycle);
-    const vDom = this.createElement(this.__prevData);
-    this.reconcile(this.__vNode, vDom);
+    this.__vNode = this.createElement(this.__prevData);
+    //const vDom = this.createElement(this.__prevData);
+    //this.reconcile(this.__vNode, vDom);
   }
 
   reconcile(prev, next) {
@@ -51,9 +53,6 @@ export default class LacoView {
         prev.el.mark === next.el.mark &&
         isSameKey(prev.el.getKey(), next.el.getKey())
       ) {
-        console.log("get");
-        console.log(prev.props);
-        console.log(next.props);
         return { el: prev.el, props: next.props, children };
       } else {
         return { el: next.el, props: next.props, children };

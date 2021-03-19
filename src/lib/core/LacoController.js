@@ -1,3 +1,5 @@
+import Maco from "./Maco";
+const { update } = Maco;
 export default class LacoController {
   constructor(view, model, marker) {
     this.view = view;
@@ -15,13 +17,26 @@ export default class LacoController {
     return this.view.__vNode;
   }
 
+  /*
   __update() {
     this.view.update(this.model.props, this.effects, this.model.getHooks());
     this.model.resetCursor();
+    update();
+  }
+  */
+
+  __update() {
+    this.view.update(this.model.props, this.effects, this.model.getHooks());
+    this.model.resetCursor();
+    return this.getVNode();
   }
 
   getKey() {
     return this.model.getKey();
+  }
+
+  getVNode() {
+    return this.view.__vNode;
   }
 
   effects() {
@@ -35,7 +50,8 @@ export default class LacoController {
           (val) => {
             if (hooks[cursor] !== val) {
               hooks[cursor][0] = val;
-              this.__update();
+              //this.__update();
+              update();
             }
           },
         ];

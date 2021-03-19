@@ -3,7 +3,7 @@ import { classModule } from "snabbdom/modules/class";
 import { propsModule } from "snabbdom/modules/props";
 import { styleModule } from "snabbdom/modules/style";
 import { eventListenersModule } from "snabbdom/modules/eventlisteners";
-import { isFunction } from "../../util/is";
+import { isFunction } from "../util/is";
 
 export const patch = init([
   classModule,
@@ -14,7 +14,7 @@ export const patch = init([
 
 const Maco = (function () {
   let rootDom = null;
-
+  let rootApp = null;
   return {
     jsxToJson: (el, props, ...children) => {
       props = props || {};
@@ -32,8 +32,8 @@ const Maco = (function () {
         } else if (key === "dataSet") {
           dataset = props[key];
         } else if (key === "key") {
-          //key = props[key];
-          prop.key = props[key];
+          key = props[key];
+          prop.key = key;
         } else {
           prop[key] = props[key];
         }
@@ -70,7 +70,12 @@ const Maco = (function () {
     },
     render: (container, vDom) => {
       const createdElement = vDom();
-      rootDom = patch(container, createdElement.__render());
+      rootApp = createdElement;
+      rootDom = patch(container, rootApp.__render());
+      return rootDom;
+    },
+    update: () => {
+      rootDom = patch(rootDom, rootApp.__update());
       return rootDom;
     },
   };

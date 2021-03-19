@@ -15,9 +15,9 @@ const Item = LacoFactory(({props}, effects) => {
   if(clickCount === 1){
     return <li style={{
       textDecoration:"line-through"
-    }} onClick={onClick}>{props.todo.title},{clickCount}</li>
+    }} onClick={onClick}>{props.todo.title}<span>,{clickCount}</span></li>
   }
-  return <li onClick={onClick}>{props.todo.title}</li>
+  return <li onClick={onClick}>{props.todo.title}<span>,{clickCount}</span></li>
 });
 
 export default Item;
