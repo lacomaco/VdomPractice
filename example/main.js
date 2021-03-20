@@ -6,13 +6,16 @@ import Item from './item';
 const example = [
   {
     title:'안녕하세요',
-    key:'id-1'
   },{
     title:'반가워요',
-    key:'id-2'
   },{
     title:'항상 고마워요',
-    key:'id-3'
+  },{
+    title:"TDD를 공부합시다",
+  },{
+    title:"파이썬 알고리즘 인터뷰",
+  },{
+    title:"자바 ORM 표준 JPA 프로그래밍"
   }
 ]
 
