@@ -24,7 +24,6 @@ export default class LacoView {
     this.createElement(nextData);
     this.__diff(this.__prevData, nextData, [this.__prevData]);
     this.__prevData = nextData;
-    //this.__prevData = this.diff(this.__prevData, nextData);
     this.bindLifeCycle(this.__prevData, lifeCycle);
     this.__vNode = this.createElement(this.__prevData);
   }
