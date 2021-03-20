@@ -22,7 +22,9 @@ export default class LacoView {
   update(props, effects, lifeCycle) {
     const nextData = this.componentFN(props, effects);
     this.createElement(nextData);
-    this.__prevData = this.diff(this.__prevData, nextData);
+    this.__diff(this.__prevData, nextData, [this.__prevData]);
+    this.__prevData = nextData;
+    //this.__prevData = this.diff(this.__prevData, nextData);
     this.bindLifeCycle(this.__prevData, lifeCycle);
     this.__vNode = this.createElement(this.__prevData);
   }
@@ -32,40 +34,30 @@ export default class LacoView {
     return this.__vNode;
   }
 
-  diff(prev, next) {
-    const children =
-      next.children &&
-      next.children
-        .map((child, index) => {
-          const test = this.diff(prev.children[index], child);
-          return test;
-        })
-        .filter((x) => x);
+  __diff(prev, next, prevSibling) {
+    if (next && isComponent(next.el)) {
+      const sameComponent = prevSibling.find((component) => {
+        if (
+          isComponent(component.el) &&
+          component.el.mark === next.el.mark &&
+          isSameKey(component.el.getKey(), next.el.getKey())
+        ) {
+          console.log(component.el.getKey(), next.el.getKey());
+          return true;
+        }
+        return false;
+      });
 
-    if (!isString(next) && !isNumber(next)) {
-      next.children = children;
-    }
-
-    if (prev && next && isComponent(prev.el) && isComponent(next.el)) {
-      if (
-        prev.el.mark === next.el.mark &&
-        isSameKey(prev.el.getKey(), next.el.getKey())
-      ) {
-        return { el: prev.el, props: next.props, children };
-      } else {
-        return { el: next.el, props: next.props, children };
+      if (sameComponent) {
+        next.el = sameComponent.el;
+        next.el.__update();
       }
     }
 
-    if (prev && !next) {
-      return null;
-    }
-
-    if (!prev && next) {
-      return next;
-    }
-
-    return next;
+    next.children &&
+      next.children.map((child, index) => {
+        return this.__diff(prev.children[index], child, prev.children);
+      });
   }
 
   createElement(component) {
