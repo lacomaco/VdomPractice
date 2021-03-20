@@ -42,7 +42,6 @@ export default class LacoController {
           (val) => {
             if (hooks[cursor] !== val) {
               hooks[cursor][0] = val;
-              //this.__update();
               update();
             }
           },
