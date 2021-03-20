@@ -41,7 +41,6 @@ export default class LacoView {
           component.el.mark === next.el.mark &&
           isSameKey(component.el.getKey(), next.el.getKey())
         ) {
-          console.log(component.el.getKey(), next.el.getKey());
           return true;
         }
         return false;
