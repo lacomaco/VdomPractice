@@ -2,6 +2,7 @@ import MacoCore from "../src/lib/core/Maco";
 import LacoFactory from "../src/lib/core/LacoFactory";
 import Header from './header';
 import Item from './item';
+import Footer from './footer';
 
 const example = [
   {
@@ -37,6 +38,7 @@ const Main = LacoFactory((props, effects) => {
     <ul>
     {todoList.map((e,id)=><Item todo={e} key={e.title} index={id} deleteTodo={deleteTodoList}/>)}
     </ul>
+    <Footer/>
   </div>
 });
 
