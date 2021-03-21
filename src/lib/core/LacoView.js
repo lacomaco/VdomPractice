@@ -21,7 +21,6 @@ export default class LacoView {
 
   update(props, effects, lifeCycle) {
     const nextData = this.componentFN(props, effects);
-    this.createElement(nextData);
     this.__diff(this.__prevData, nextData, [this.__prevData]);
     this.__prevData = nextData;
     this.bindLifeCycle(this.__prevData, lifeCycle);
@@ -39,7 +38,7 @@ export default class LacoView {
         if (
           isComponent(component.el) &&
           component.el.mark === next.el.mark &&
-          isSameKey(component.el.getKey(), next.el.getKey())
+          isSameKey(component.el.getKey(), next.props.props.key)
         ) {
           return true;
         }
@@ -48,7 +47,7 @@ export default class LacoView {
 
       if (sameComponent) {
         next.el = sameComponent.el;
-        next.el.__update();
+        next.el.__update(next.props);
       }
     }
 
