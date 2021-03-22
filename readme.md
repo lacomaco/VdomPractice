@@ -11,6 +11,8 @@ tiny-react는 Vue.JS의 가상돔 라이브러리인 Snabbdom을 바탕으로 �
 ### LacoFactory
 
 ```js
+import Maco from 'Maco'; // 필수로 선언해주셔야합니다!
+
 const TestComponent = LacoFactory((props,effects)=>{
   const [data,setData] = effects.useState(0);
   return <div> {data} </div>
@@ -22,7 +24,7 @@ LacoFactory 함수는 인자로 실행할 컴포넌트 함수를 받습니다.
 
 LacoFactory 함수 실행시 State,Hooks와 같이 컴포넌트가 저장하고 관리할 정보를 클로저에 담아 컴포넌트가 추후 사용할 수 있도록 해줍니다.
 
-JSX를 파싱하기 위해서 LacoFactory 함수의 상단에는 MacoCore 모듈을 선언해줘야합니다.
+JSX를 파싱하기 위해서 LacoFactory 함수의 상단에는 Maco 모듈을 선언해줘야합니다.
 
 #### props
 
@@ -83,3 +85,16 @@ JSX 렌더링
 useState,useEffect지원
 
 IE 11 지원
+
+### 예제 프로젝트 빌드 방법
+
+```
+git clone https://github.com/lacomaco/tiny-react.git
+
+//프로젝트 파일에서
+npm i
+
+npm run build
+
+dist 파일의 v-domStudy.html파일을 LiveServer로 실행시켜주세요~!
+```
