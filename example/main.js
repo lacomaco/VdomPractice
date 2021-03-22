@@ -64,8 +64,6 @@ const Main = LacoFactory((props, effects) => {
       }
       return acc;
     },0);
-    console.log('doneCount : ',doneCount);
-    console.log('remainCount : ',remainCount);
     setDone(doneCount);
     setRemain(remainCount);
   },[todoList])
