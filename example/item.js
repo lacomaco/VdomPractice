@@ -1,14 +1,9 @@
 import MacoCore from "../src/lib/core/Maco";
 import LacoFactory from "../src/lib/core/LacoFactory";
-import DeleteIcon from './delete-button';
 
 const Item = LacoFactory(({props}, effects) => {
   const [clickCount,setClickCount] = effects.useState(0);
   const {deleteTodo,changeTodoList} = props;
-  
-  effects.useEffect(()=>{
-    console.log(clickCount);
-  },[clickCount])
 
   const onClick = ()=>{
     if(clickCount===1){
