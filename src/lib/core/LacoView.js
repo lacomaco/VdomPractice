@@ -37,7 +37,7 @@ export default class LacoView {
       const sameComponent = prevSibling.find((component) => {
         if (
           isComponent(component.el) &&
-          component.el.mark === next.el.mark &&
+          component.el.marker === next.el.marker &&
           isSameKey(component.el.getKey(), next.props.props.key)
         ) {
           return true;
