@@ -108,6 +108,16 @@ section {
 body {
   line-height: 1;
 }
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  height: 100vh;
+}
+
 ol,
 ul {
   list-style: none;
@@ -131,40 +141,117 @@ table {
 /* reset end */
 
 .header {
-  margin: 10px 20px;
+  margin: 10px;
   display: flex;
   flex-direction: row;
 }
 
 .header-input {
-  width: 70%;
+  width: 90%;
 }
 
 .header-input input {
   padding: 5px 10px;
-  font-size: 15px;
+  font-size: 25px;
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid lightgray;
 }
 
 .header-button {
-  border: 1px solid black;
+  width: 10%;
   text-align: center;
   margin-left: 20px;
   padding: 5px 10px;
+  background-color: #8e49e7;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.header-title {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0px;
 }
 
 .app-background {
-  background: rgb(240, 240, 249);
+  background: rgb(99, 216, 209);
   background: linear-gradient(
     180deg,
-    rgba(240, 240, 249, 1) 0%,
-    rgba(174, 174, 240, 1) 53%,
-    rgba(43, 186, 250, 1) 100%
+    rgba(99, 216, 209, 1) 0%,
+    rgba(174, 174, 240, 1) 50%,
+    rgba(77, 141, 226, 1) 100%
   );
+  height: 100%;
 }
 
 .app {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
   width: 1080px;
-  margin: 0 auto;
+  margin: 10px auto;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.footer {
+  margin: 10px 0px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.footer div {
+  margin-bottom: 5px;
+}
+
+.footer-copyright {
+}
+
+.footer-flat_icon {
+}
+
+.item-list {
+  margin: 10px;
+}
+
+.item-list li {
+  padding-bottom: 10px;
+}
+
+.item {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 7px 0px;
+  border-top: 1px solid lightgray;
+}
+
+.item:first-child {
+  border-top: 0px;
+}
+
+.item-checked {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.delete-button {
+  width: 100x;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: tomato;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  height: 100%;
 }

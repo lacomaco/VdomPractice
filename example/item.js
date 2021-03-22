@@ -1,9 +1,10 @@
 import MacoCore from "../src/lib/core/Maco";
 import LacoFactory from "../src/lib/core/LacoFactory";
+import DeleteIcon from './delete-button';
 
 const Item = LacoFactory(({props}, effects) => {
   const [clickCount,setClickCount] = effects.useState(0);
-  const {deleteTodo} = props;
+  const {deleteTodo,changeTodoList} = props;
   
   effects.useEffect(()=>{
     console.log(clickCount);
@@ -14,15 +15,17 @@ const Item = LacoFactory(({props}, effects) => {
       deleteTodo(props.index);
     }else{
       setClickCount(clickCount+1);
+      changeTodoList(props.index);
     }
   }
 
   if(clickCount === 1){
-    return <li style={{
+    return <li className="item item-checked" style={{
       textDecoration:"line-through"
-    }} onClick={onClick}>{props.todo.title}<span>,{clickCount}</span></li>
+    }} onClick={onClick}>{props.todo.title}
+    </li>
   }
-  return <li onClick={onClick}>{props.todo.title}<span>,{clickCount}</span></li>
+  return <li className="item" onClick={onClick}>{props.todo.title}</li>
 });
 
 export default Item;

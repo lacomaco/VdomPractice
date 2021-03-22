@@ -14,12 +14,17 @@ const Header = LacoFactory(({props}, effects) => {
     setInputValue('');
   }
 
-  return <div className="header">
+  return <div>
+  <h1 className="header-title">
+    Tiny-React TodoList
+  </h1>
+  <div className="header">
   <div className="header-input">
-    <input onChange={inputChange} value={inputValue}></input>
+    <input onChange={inputChange} value={inputValue} placeholder={"오늘 해야 할 일을 입력해주세요~!"}></input>
   </div>
   <div className="header-button" onClick={AddClick}>
     ADD
+  </div>
   </div>
   </div>
 });

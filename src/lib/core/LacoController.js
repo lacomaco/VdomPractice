@@ -43,7 +43,7 @@ export default class LacoController {
         hooks[cursor] = hooks[cursor] || [
           initVal,
           (val) => {
-            if (hooks[cursor] !== val) {
+            if (hooks[cursor][0] != val) {
               hooks[cursor][0] = val;
               update();
             }
@@ -66,7 +66,7 @@ export default class LacoController {
           hooks[cursor] = diffArray;
         } else {
           const isChanged = !hooks[cursor].every(
-            (elm, i) => elm === diffArray[i]
+            (elm, i) => elm == diffArray[i]
           );
 
           if (isChanged) {
