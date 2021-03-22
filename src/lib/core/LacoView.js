@@ -1,15 +1,22 @@
-import { patch } from "./Maco";
+import Maco, { patch } from "./Maco";
 import { h } from "snabbdom/h";
 import { isString, isComponent, isNumber, isSameKey } from "../util/is";
+const { update } = Maco;
+
 export default class LacoView {
-  constructor(componentFN) {
+  constructor(componentFN, model) {
+    this.model = model;
     this.componentFN = componentFN;
+    this.runComponentFN = (props, effects) => {
+      const renderData = this.componentFN(props, effects);
+      return renderData;
+    };
     this.__vNode = null;
     this.__prevData = null;
   }
 
   render(props, effects, lifeCycle) {
-    const vDomInfo = this.componentFN(props, effects);
+    const vDomInfo = this.runComponentFN(props, effects);
     this.__prevData = vDomInfo;
     this.bindLifeCycle(vDomInfo, lifeCycle);
     return (this.__vNode = this.createElement(vDomInfo));
@@ -20,7 +27,7 @@ export default class LacoView {
   }
 
   update(props, effects, lifeCycle) {
-    const nextData = this.componentFN(props, effects);
+    const nextData = this.runComponentFN(props, effects);
     this.__diff(this.__prevData, nextData, [this.__prevData]);
     this.__prevData = nextData;
     this.bindLifeCycle(this.__prevData, lifeCycle);
