@@ -33,12 +33,14 @@ const Main = LacoFactory((props, effects) => {
     setTodoList([...todoList.slice(0,index),...todoList.slice(index+1)]);
   }
 
-  return <div>
-    <Header addTodo={addTodoList}/>
-    <ul>
-    {todoList.map((e,id)=><Item todo={e} key={e.title} index={id} deleteTodo={deleteTodoList}/>)}
-    </ul>
-    <Footer/>
+  return <div className="app-background">
+    <main className="app">
+      <Header addTodo={addTodoList}/>
+      <ul>
+        {todoList.map((e,id)=><Item todo={e} key={e.title} index={id} deleteTodo={deleteTodoList}/>)}
+      </ul>
+      <Footer/>
+    </main>
   </div>
 });
 
