@@ -62,16 +62,16 @@ export default class LacoController {
         let cleanUp = undefined;
 
         if (!hooks[cursor]) {
-          cleanUp = callback();
           hooks[cursor] = diffArray;
+          cleanUp = callback();
         } else {
           const isChanged = !hooks[cursor].every(
             (elm, i) => elm == diffArray[i]
           );
 
           if (isChanged) {
-            cleanUp = callback();
             hooks[cursor] = diffArray;
+            cleanUp = callback();
           }
         }
 
