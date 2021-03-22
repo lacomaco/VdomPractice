@@ -15,6 +15,7 @@ export const patch = init([
 const Maco = (function () {
   let rootDom = null;
   let rootApp = null;
+  let waiting = undefined;
   return {
     jsxToJson: (el, props, ...children) => {
       props = props || {};
@@ -75,8 +76,10 @@ const Maco = (function () {
       return rootDom;
     },
     update: () => {
-      rootDom = patch(rootDom, rootApp.__update());
-      return rootDom;
+      window.cancelAnimationFrame(waiting);
+      waiting = window.requestAnimationFrame(() => {
+        rootDom = patch(rootDom, rootApp.__update());
+      });
     },
   };
 })();
