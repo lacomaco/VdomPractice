@@ -16,13 +16,13 @@ const example = [
     title:'항상 고마워요',
     state:'remain',
   },{
-    title:"TDD를 공부합시다",
+    title:"감사합니다.",
     state:'remain',
   },{
-    title:"파이썬 알고리즘 인터뷰",
+    title:"자바스크립트와 클로저",
     state:'remain',
   },{
-    title:"자바 ORM 표준 JPA 프로그래밍",
+    title:"GOF 디자인 패턴",
     state:'remain'
   }
 ]
