@@ -22,7 +22,7 @@ let container = document.querySelector("#container");
 render(container, Main);
 ```
 
-MacoCore 모듈에는 JSX를 렌더링 데이터로 변환 하거나, 컴포넌트를 DOM에 렌더링 하는 함수가 존재합니다.
+MacoCore 모듈에는 JSX를 렌더링 데이터로 변환 하는 함수와 컴포넌트를 DOM에 렌더링 하는 함수가 존재합니다.
 
 #### render 함수
 
