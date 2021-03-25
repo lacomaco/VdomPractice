@@ -40,7 +40,7 @@ render 함수는 컴포넌트를 실제 DOM에 바인딩 하는 함수입니다.
 
 render 함수의 첫 번째 인자엔 실제 DOM을, 두 번째 인자엔 컴포넌트를 넣어주세요.
 
-#### MacoCore
+#### MacoCore.jsxToJson
 
 ```js
 import MacoCore from "../src/lib/core/Maco";
@@ -50,7 +50,9 @@ const TestComponent = LacoFactory((props, effects) => {
 });
 ```
 
-JSX를 렌더링 하기 위해서는 MacoCore 모듈이 import 되어있어야 합니다.
+MacoCore에는 JSX를 렌더링 데이터로 변환하는 MacoCore.jsxToJson 함수가 존재합니다.
+
+따라서 JSX를 렌더링 하기 위해서는 MacoCore 모듈이 import 되어있어야 합니다.
 
 ### LacoFactory
 
